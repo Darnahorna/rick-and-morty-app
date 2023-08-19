@@ -1,0 +1,8 @@
+.footer {
+  text-align: center;
+}
+.hr_line {
+  margin: 0;
+  padding: 0;
+  color: var(--secondary-color);
+}
