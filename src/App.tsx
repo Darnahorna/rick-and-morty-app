@@ -1,29 +1,31 @@
 import "./App.css";
-import { data } from "../api/getCherecters.tsx";
-import { useState } from "react";
+import { Suspense } from "react";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
 import { Footer } from "./components/Footer/Footer.tsx";
-import { Card, Character } from "./components/Card/Card.tsx";
-import { Pagination } from "./components/Pagination/Pagination.tsx";
-import { Controllers } from "./components/Controllers/Controllers.tsx";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { CharactersContainer } from "./components/Characters/CharactersContainer.tsx";
+import { LocationContainer } from "./components/Locations/LocationContainer.tsx";
+import Preloader from "./components/Preloader/Preloader.tsx";
+import { EpisodeContainer } from "./components/Episodes/EpisodeContainer.tsx";
 
 function App() {
-  const fetchedCharacters: any = data;
-  const [characters, setCharacters] = useState(fetchedCharacters.results);
-
   return (
     <div className="wrapper">
-      <Navigation />
-      <main className="content">
-        <header>Locations</header>
-        <Controllers />
-        <section className="parent-grid">
-          {characters.map((item: Character) => {
-            return <Card item={item} key={item.id} />;
-          })}
-        </section>
-        <Pagination />
-      </main>
+      <Suspense fallback={<Preloader />}>
+        <Router>
+          <Navigation />
+          <main className="content">
+            <Routes>
+              <Route
+                path="/characters"
+                element={<CharactersContainer />}
+              ></Route>
+              <Route path="/locations" element={<LocationContainer />}></Route>
+              <Route path="/episodes" element={<EpisodeContainer />}></Route>
+            </Routes>
+          </main>
+        </Router>
+      </Suspense>
       <Footer />
     </div>
   );

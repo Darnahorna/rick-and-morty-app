@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
 
 export const Navigation = () => {
@@ -5,9 +6,9 @@ export const Navigation = () => {
     <nav>
       <div>
         <span className={classes.logo}>
-          <a href="" className={classes.link_logo}>
+          <NavLink to="/characters" className={classes.link_logo}>
             The Rick and Morty
-          </a>
+          </NavLink>
         </span>
       </div>
       <div className={classes.menu_toggle} id="mobile-menu">
@@ -17,13 +18,13 @@ export const Navigation = () => {
       </div>
       <ul className={classes.nav_list}>
         <li>
-          <a href="">Characters</a>
+          <NavLink to="/characters">Characters</NavLink>
         </li>
         <li>
-          <a href="">Locations</a>
+          <NavLink to="/locations">Locations</NavLink>
         </li>
         <li>
-          <a href="">Episodes</a>
+          <NavLink to="/episodes">Episodes</NavLink>
         </li>
       </ul>
     </nav>

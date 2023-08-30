@@ -1,4 +1,4 @@
-export const Controllers = () => {
+export const Filters = () => {
   return (
     <section className="controllers">
       <div className="filter">

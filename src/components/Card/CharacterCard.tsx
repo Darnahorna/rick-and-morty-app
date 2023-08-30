@@ -1,24 +1,7 @@
+import { CharacterProps } from "../types/types";
 import classes from "./Card.module.css";
 
-export type Character = {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  origin: {
-    name: string;
-    url: string;
-  };
-  image: string;
-  url: string;
-  episode: [string];
-};
-
-type CardProps = {
-  item: Character;
-};
-
-export const Card: React.FC<CardProps> = ({ item }) => {
+export const CharacterCard = ({ item }: CharacterProps) => {
   return (
     <article className={classes.grid_item}>
       <div className={classes.card_img}>
@@ -44,11 +27,11 @@ export const Card: React.FC<CardProps> = ({ item }) => {
         </div>
         <div className={classes.section}>
           <span className={classes.text_gray}>Last known location:</span>
-          <a href={item.origin.url}>{item.origin.name}</a>
+          <a href={item.location.url}>{item.location.name}</a>
         </div>
         <div className={classes.section}>
           <span className={classes.text_gray}>First seen in:</span>
-          <a href="">The Ricklantis Mixup</a>
+          <a href={item.origin.url}>{item.origin.name}</a>
         </div>
       </div>
     </article>
