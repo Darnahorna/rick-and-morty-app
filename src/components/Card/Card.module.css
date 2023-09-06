@@ -1,11 +1,16 @@
 .grid_item {
   border-radius: 0.5em;
-  margin: 1vh 2vw 1vh 0;
+  margin: 1vh 1vw 1vh 0;
   border: var(--text-color) solid 0.01em;
   display: flex;
   justify-content: space-between;
   box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  background-color: white;
+}
+
+.grid_item:hover {
+  box-shadow: inset 1px 1px 3px rgba(3, 5, 58, 0.698);
 }
 .card_img {
   flex: 2 1 0%;

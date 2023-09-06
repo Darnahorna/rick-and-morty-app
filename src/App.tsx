@@ -10,24 +10,30 @@ import { EpisodeContainer } from "./components/Episodes/EpisodeContainer.tsx";
 
 function App() {
   return (
-    <div className="wrapper">
-      <Suspense fallback={<Preloader />}>
-        <Router>
-          <Navigation />
-          <main className="content">
-            <Routes>
-              <Route
-                path="/characters"
-                element={<CharactersContainer />}
-              ></Route>
-              <Route path="/locations" element={<LocationContainer />}></Route>
-              <Route path="/episodes" element={<EpisodeContainer />}></Route>
-            </Routes>
-          </main>
-        </Router>
-      </Suspense>
-      <Footer />
-    </div>
+    <>
+      <header>
+        <img src="public/cover.png" className="img_promo" />
+      </header>
+
+      <div className="wrapper">
+        <Suspense fallback={<Preloader />}>
+          <Router>
+            <Navigation />
+            <main className="content">
+              <Routes>
+                <Route index path="/" element={<CharactersContainer />}></Route>
+                <Route
+                  path="/locations"
+                  element={<LocationContainer />}
+                ></Route>
+                <Route path="/episodes" element={<EpisodeContainer />}></Route>
+              </Routes>
+            </main>
+          </Router>
+        </Suspense>
+        <Footer />
+      </div>
+    </>
   );
 }
 

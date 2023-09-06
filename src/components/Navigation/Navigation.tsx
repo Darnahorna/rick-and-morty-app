@@ -1,32 +1,37 @@
-import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
+import { HamburgerMenu } from "./HamburgerMenu/HamburgerMenu.tsx";
+import { useState } from "react";
+import { NavList } from "./NavList/NavList.tsx";
+import promo from "../../../public/cover.png";
 
 export const Navigation = () => {
+  // State to track whether the menu is open or closed
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // Function to toggle the menu
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav>
-      <div>
-        <span className={classes.logo}>
-          <NavLink to="/characters" className={classes.link_logo}>
-            The Rick and Morty
-          </NavLink>
-        </span>
-      </div>
-      <div className={classes.menu_toggle} id="mobile-menu">
-        <span className={classes.bar}></span>
-        <span className={classes.bar}></span>
-        <span className={classes.bar}></span>
-      </div>
-      <ul className={classes.nav_list}>
-        <li>
-          <NavLink to="/characters">Characters</NavLink>
-        </li>
-        <li>
-          <NavLink to="/locations">Locations</NavLink>
-        </li>
-        <li>
-          <NavLink to="/episodes">Episodes</NavLink>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <nav id="nav">
+        <div className={classes.img_wrapper}>
+          <img src={promo} className="img_promo_mobile" />
+        </div>
+        <HamburgerMenu
+          isOpen={isOpen}
+          toggleMenu={toggleMenu}
+          closeMenu={closeMenu}
+        />
+        <div className={classes.desktopOnlyMenu}>
+          <NavList closeMenu={closeMenu} />
+        </div>
+      </nav>
+    </>
   );
 };

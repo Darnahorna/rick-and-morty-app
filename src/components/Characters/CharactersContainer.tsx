@@ -38,11 +38,11 @@ export const CharactersContainer = () => {
 
   return (
     <>
-      <header>Characters</header>
+      <h2>Characters</h2>
       <Filters />
       <section className="parent-grid">
         {data &&
-          data.map((item: Character) => {
+          data.slice(0, 6).map((item: Character) => {
             return <CharacterCard item={item} key={item.id} />;
           })}
       </section>

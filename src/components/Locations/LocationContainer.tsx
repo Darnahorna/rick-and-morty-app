@@ -37,11 +37,11 @@ export const LocationContainer = () => {
   }
   return (
     <>
-      <header>Locations</header>
+      <h2>Locations</h2>
       <Filters />
       <section className="parent-grid">
         {data &&
-          data.map((item: Location) => {
+          data.slice(0, 9).map((item: Location) => {
             return <LocationCard item={item} key={item.id} />;
           })}
       </section>

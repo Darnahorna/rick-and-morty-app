@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className={classes.footer}>
       <hr className={classes.hr_line} />
       <p>
-        Coded by{" "}
+        💻 with ❤️ by{" "}
         <a
           href="https://www.linkedin.com/in/daria-nahorna-4a39511b0/"
           target="_blank"

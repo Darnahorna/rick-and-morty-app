@@ -37,11 +37,11 @@ export const EpisodeContainer = () => {
   }
   return (
     <>
-      <header>Episodes</header>
+      <h2>Episodes</h2>
       <Filters />
       <section className="parent-grid">
         {data &&
-          data.map((item: Episode) => {
+          data.slice(0, 9).map((item: Episode) => {
             return <EpisodeCard item={item} key={item.id} />;
           })}
       </section>

@@ -1,37 +1,27 @@
-.logo {
-  font-family: "Creepster", cursive;
-  font-size: 2em;
+nav {
+  flex-direction: c;
+  justify-content: space-between;
+  align-self: flex-start;
+  display: flex;
 }
-.link_logo {
-  text-decoration: none;
-}
-.menu_toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
+.img_wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.bar {
-  width: 3em;
-  height: 0.3em;
-  background-color: var(--text-color);
-  margin: 0.3em 0;
+@media (max-width: 992px) {
+  .desktopOnlyMenu {
+    display: none;
+  }
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-right: none;
+    background-color: white;
+    box-shadow: 0 0 48px rgb(0 0 0 / 15%);
+  }
 }
 
 @media (max-width: 576px) {
-  .menu_toggle {
-    display: flex;
-    margin-right: 4vw;
-  }
-  .logo {
-    margin-left: 4vw;
-    font-size: 2.4em;
-  }
-  .nav_list {
-    display: none;
-  }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (max-width: 992px) {
 }

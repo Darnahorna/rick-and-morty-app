@@ -1,0 +1,25 @@
+.img_promo {
+  width: 20%;
+}
+
+.img_promo_mobile {
+  display: none;
+}
+header {
+  text-align: center;
+}
+@media (max-width: 992px) {
+  .img_promo {
+    display: none;
+  }
+  .img_promo_mobile {
+    display: block;
+    width: 40%;
+  }
+}
+@media (max-width: 576px) {
+  .img_promo_mobile {
+    display: block;
+    width: 50%;
+  }
+}
