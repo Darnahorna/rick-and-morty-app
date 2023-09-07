@@ -7,20 +7,19 @@ export const Pagination = ({
   onPageChanged,
   currentPage,
 }: PaginationInfoProps) => {
-  console.log(paginationInfo);
   let pages = [];
   for (let i = 1; i <= paginationInfo.pages; i++) {
     pages.push(i);
   }
 
-  let portionCount = Math.ceil(42 / 10);
+  let portionCount = Math.ceil(paginationInfo.pages / 7);
 
   const [portionNumber, setPortionNumber] = useState(1);
 
-  let leftPortionPageNumber = (portionNumber - 1) * 10 + 1;
-  let rightPortionNumber = portionNumber * 10;
+  let leftPortionPageNumber = (portionNumber - 1) * 7 + 1;
+  let rightPortionNumber = portionNumber * 7;
 
-  useEffect(() => setPortionNumber(Math.ceil(currentPage / 10)), [currentPage]);
+  useEffect(() => setPortionNumber(Math.ceil(currentPage / 7)), [currentPage]);
 
   return (
     <section className={classes.pagination}>
@@ -36,13 +35,16 @@ export const Pagination = ({
       )}
       {pages
         .filter((p) => p >= leftPortionPageNumber && p <= rightPortionNumber)
-        .map((p) => {
+        .map((p, index) => {
           return (
             <button
               onClick={() => onPageChanged(p)}
               className={
-                currentPage === p ? classes.selected : classes.pagination_btn
+                currentPage === p
+                  ? classes.active
+                  : classes.normal_pagination_button
               }
+              key={index}
             >
               {p}
             </button>

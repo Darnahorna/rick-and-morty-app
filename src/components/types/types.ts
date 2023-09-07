@@ -51,12 +51,6 @@ export type EpisodeProps = {
   item: Episode;
 };
 
-// export interface PaginationInfoType {
-//   count: number;
-//   pages: number;
-//   next: null | "string";
-//   prev: null | "string";
-// }
 export type PaginationInfoProps = {
   paginationInfo: {
     count: number;
@@ -66,4 +60,8 @@ export type PaginationInfoProps = {
   };
   onPageChanged: (pageNumber: number) => void;
   currentPage: number;
+};
+
+export type ContentType = {
+  contentType: string;
 };

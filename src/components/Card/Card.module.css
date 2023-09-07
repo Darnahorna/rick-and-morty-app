@@ -76,3 +76,19 @@
 .unknown {
   background-color: gray;
 }
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 992px) {
+  .grid_item {
+    width: 42vw;
+    height: 30vh;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .grid_item {
+    width: 95vw;
+    height: 25vh;
+  }
+}

@@ -9,9 +9,14 @@
   cursor: pointer;
   background-color: transparent;
   font-weight: 600;
+}
+.pagination button:hover {
+  color: var(--highlight-color);
+}
+.normal_pagination_button {
   color: var(--text-color);
 }
 
-.pagination button:hover {
+.active {
   color: var(--highlight-color);
 }
