@@ -10,6 +10,34 @@ export const CharactersContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [paginationInfo, setPaginationInfo] = useState();
+
+  const onPageChanged = (pageNumber: number) => {
+    requestUsers(pageNumber);
+    console.log("Page " + pageNumber + " clicked");
+    setCurrentPage(pageNumber);
+  };
+
+  const requestUsers = (pageNumber: number) => {
+    fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data.results);
+        setLoading(false);
+        setPaginationInfo(data.info);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character")
       .then((response) => {
@@ -21,6 +49,7 @@ export const CharactersContainer = () => {
       .then((data) => {
         setData(data.results);
         setLoading(false);
+        setPaginationInfo(data.info);
       })
       .catch((error) => {
         setError(error.message);
@@ -42,11 +71,17 @@ export const CharactersContainer = () => {
       <Filters />
       <section className="parent-grid">
         {data &&
-          data.slice(0, 6).map((item: Character) => {
+          data.map((item: Character) => {
             return <CharacterCard item={item} key={item.id} />;
           })}
       </section>
-      <Pagination />
+      {paginationInfo && (
+        <Pagination
+          paginationInfo={paginationInfo}
+          onPageChanged={onPageChanged}
+          currentPage={currentPage}
+        />
+      )}
     </>
   );
 };

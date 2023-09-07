@@ -50,3 +50,20 @@ export interface Episode {
 export type EpisodeProps = {
   item: Episode;
 };
+
+// export interface PaginationInfoType {
+//   count: number;
+//   pages: number;
+//   next: null | "string";
+//   prev: null | "string";
+// }
+export type PaginationInfoProps = {
+  paginationInfo: {
+    count: number;
+    pages: number;
+    next: null | "string";
+    prev: null | "string";
+  };
+  onPageChanged: (pageNumber: number) => void;
+  currentPage: number;
+};

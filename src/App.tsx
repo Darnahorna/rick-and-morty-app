@@ -7,12 +7,13 @@ import { CharactersContainer } from "./components/Characters/CharactersContainer
 import { LocationContainer } from "./components/Locations/LocationContainer.tsx";
 import Preloader from "./components/Preloader/Preloader.tsx";
 import { EpisodeContainer } from "./components/Episodes/EpisodeContainer.tsx";
+import promo from "../public/cover.png";
 
 function App() {
   return (
     <>
       <header>
-        <img src="public/cover.png" className="img_promo" />
+        <img src={promo} className="img_promo" />
       </header>
 
       <div className="wrapper">

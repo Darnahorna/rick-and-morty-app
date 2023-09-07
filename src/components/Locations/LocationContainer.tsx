@@ -45,7 +45,7 @@ export const LocationContainer = () => {
             return <LocationCard item={item} key={item.id} />;
           })}
       </section>
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   );
 };

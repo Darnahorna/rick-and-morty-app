@@ -7,6 +7,8 @@
   box-shadow: 3px 3px 18px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   background-color: white;
+  width: 30vw;
+  height: 25vh;
 }
 
 .grid_item:hover {
@@ -25,6 +27,11 @@
   object-position: center center;
   object-fit: cover;
 }
+
+.card_img img:hover {
+  transform: scale(1.1);
+}
+
 .item_description {
   flex: 3 1 0%;
   position: relative;

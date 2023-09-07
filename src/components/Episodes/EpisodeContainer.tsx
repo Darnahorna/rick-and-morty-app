@@ -45,7 +45,7 @@ export const EpisodeContainer = () => {
             return <EpisodeCard item={item} key={item.id} />;
           })}
       </section>
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   );
 };

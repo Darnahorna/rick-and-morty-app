@@ -20,6 +20,9 @@ body {
   color: var(--text-color);
   background-image: url("../public/backgroungjpg.jpg");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh; /* Ensure the background covers the viewport height */
 }
 a {
   text-decoration: none;
@@ -40,24 +43,6 @@ a:hover {
 }
 .content {
   margin: 0vh 2vw;
-}
-.pagination {
-  display: flex;
-  justify-content: center;
-}
-.pagination button {
-  padding: 1vh 1vw;
-  border: none;
-  margin: 0.5em;
-  cursor: pointer;
-  background-color: transparent;
-  font-weight: 600;
-  color: var(--text-color);
-}
-
-.pagination button:hover {
-  color: var(--highlight-color);
-  text-shadow: 5px 5px 10px rgba(229, 16, 245, 0.4);
 }
 
 .search {
@@ -100,6 +85,7 @@ footer p {
     "sidebar main"
     "footer footer";
   box-shadow: 3px 3px 18px rgba(255, 149, 0, 0.698);
+  margin: auto; /* Center the content horizontally */
 }
 nav ul {
   list-style: none;
@@ -143,7 +129,7 @@ select {
 .parent-grid {
   margin: 1vh 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 2fr);
 }
 
 /* Medium devices (tablets, 768px and up) */
