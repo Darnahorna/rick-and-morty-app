@@ -21,17 +21,22 @@ function App() {
             <main className="content">
               <Routes>
                 <Route
-                  index
                   path="/"
-                  element={<CardContainer contentType="character" />}
+                  element={
+                    <CardContainer contentType="character" key="character" />
+                  }
                 ></Route>
                 <Route
                   path="/locations"
-                  element={<CardContainer contentType="location" />}
+                  element={
+                    <CardContainer contentType="location" key="location" />
+                  }
                 ></Route>
                 <Route
                   path="/episodes"
-                  element={<CardContainer contentType="episode" />}
+                  element={
+                    <CardContainer contentType="episode" key="episode" />
+                  }
                 ></Route>
               </Routes>
             </main>

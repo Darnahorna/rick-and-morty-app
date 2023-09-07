@@ -8,7 +8,7 @@ import { CharacterCard } from "../Card/CharacterCard.tsx";
 import { LocationCard } from "../Card/LocationCard.tsx";
 
 export const CardContainer = ({ contentType }: ContentType) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Character[] | Location[] | Episode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,7 +41,7 @@ export const CardContainer = ({ contentType }: ContentType) => {
   useEffect(() => {
     requestData();
     setCurrentPage(1);
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  }, []);
 
   if (loading) {
     return <Preloader />;
@@ -50,21 +50,6 @@ export const CardContainer = ({ contentType }: ContentType) => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
-  // Type guards to check the type
-  function isCharacter(
-    item: Character | Episode | Location
-  ): item is Character {
-    return (item as Character).name !== undefined;
-  }
-
-  function isEpisode(item: Character | Episode | Location): item is Episode {
-    return (item as Episode).name !== undefined;
-  }
-  function isLocation(item: Character | Episode | Location): item is Location {
-    return (item as Location).name !== undefined;
-  }
-  console.log(data);
 
   return (
     <>
@@ -78,13 +63,13 @@ export const CardContainer = ({ contentType }: ContentType) => {
       <Filters />
       <section className="parent-grid">
         {data &&
-          data.map((item: Episode | Character | Location) => {
-            if (contentType === "character" && isCharacter(item)) {
-              return <CharacterCard item={item} key={item.id} />;
-            } else if (contentType === "location" && isLocation(item)) {
-              return <LocationCard item={item} key={item.id} />;
-            } else if (contentType === "episode" && isEpisode(item)) {
-              return <EpisodeCard item={item} key={item.id} />;
+          data.map((item) => {
+            if (contentType === "character") {
+              return <CharacterCard item={item as Character} key={item.id} />;
+            } else if (contentType === "location") {
+              return <LocationCard item={item as Location} key={item.id} />;
+            } else if (contentType === "episode") {
+              return <EpisodeCard item={item as Episode} key={item.id} />;
             }
             return null;
           })}

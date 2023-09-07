@@ -12,12 +12,12 @@ export const Pagination = ({
     pages.push(i);
   }
 
-  let portionCount = Math.ceil(paginationInfo.pages / 7);
+  const portionCount = Math.ceil(paginationInfo.pages / 7);
 
   const [portionNumber, setPortionNumber] = useState(1);
 
-  let leftPortionPageNumber = (portionNumber - 1) * 7 + 1;
-  let rightPortionNumber = portionNumber * 7;
+  const leftPortionPageNumber = (portionNumber - 1) * 7 + 1;
+  const rightPortionNumber = portionNumber * 7;
 
   useEffect(() => setPortionNumber(Math.ceil(currentPage / 7)), [currentPage]);
 
