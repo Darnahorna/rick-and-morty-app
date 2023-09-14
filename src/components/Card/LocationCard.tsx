@@ -1,9 +1,9 @@
 import classes from "./Card.module.css";
-import { LocationProps } from "../types/types.ts";
+import { LocationProps } from "../../types/types.ts";
 
 export const LocationCard = ({ item }: LocationProps) => {
   return (
-    <article className={classes.grid_item}>
+    <article className={`${classes.grid_item} ${classes.smaller_grid}`}>
       <div className={classes.item_description}>
         <div className={classes.section}>
           <a href={item.url}>

@@ -1,4 +1,4 @@
-import loader from "../../loader.svg";
+import loader from "../../../assets/loader.svg";
 
 export const Preloader = () => {
   return <img src={loader} alt="spinner loader" />;

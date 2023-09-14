@@ -30,6 +30,7 @@
 
 .card_img img:hover {
   transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
 }
 
 .item_description {
@@ -76,12 +77,19 @@
 .unknown {
   background-color: gray;
 }
+.smaller_grid {
+  width: 30vw;
+  height: 20vh;
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 992px) {
   .grid_item {
     width: 42vw;
     height: 30vh;
+  }
+  .smaller_grid {
+    height: 16vh;
   }
 }
 
@@ -90,5 +98,8 @@
   .grid_item {
     width: 95vw;
     height: 25vh;
+  }
+  .smaller_grid {
+    height: 15vh;
   }
 }

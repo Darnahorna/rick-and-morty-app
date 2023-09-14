@@ -1,11 +1,15 @@
-import "./App.css";
 import { Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { TabsCardContainer } from "../src/pages/TabPage/TabsCardContainer.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
 import { Footer } from "./components/Footer/Footer.tsx";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Preloader from "./components/Preloader/Preloader.tsx";
-import promo from "../public/cover.png";
-import { CardContainer } from "./components/CardContainer/CardContainer.tsx";
+
+import Preloader from "./components/common/Preloader/Preloader.tsx";
+import promo from "./assets/cover.png";
+import ErrorPage from "./pages/ErrorPage/ErrorPage.tsx";
+import { CharacterPage } from "./pages/ItemsPage/CharacterPage.tsx";
+
+import "./App.css";
 
 function App() {
   return (
@@ -23,21 +27,26 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <CardContainer contentType="character" key="character" />
+                    <TabsCardContainer
+                      contentType="character"
+                      key="character"
+                    />
                   }
                 ></Route>
+                <Route path="/characters/:id" element={<CharacterPage />} />
                 <Route
                   path="/locations"
                   element={
-                    <CardContainer contentType="location" key="location" />
+                    <TabsCardContainer contentType="location" key="location" />
                   }
                 ></Route>
                 <Route
                   path="/episodes"
                   element={
-                    <CardContainer contentType="episode" key="episode" />
+                    <TabsCardContainer contentType="episode" key="episode" />
                   }
                 ></Route>
+                <Route path="*" element={<ErrorPage />} />
               </Routes>
             </main>
           </Router>

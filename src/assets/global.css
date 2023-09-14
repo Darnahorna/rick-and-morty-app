@@ -18,7 +18,7 @@
 body {
   font-family: "Jost", sans-serif;
   color: var(--text-color);
-  background-image: url("../public/backgroungjpg.jpg");
+  background-image: url("./backgroungjpg.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import classes from "./Pagination.module.css";
-import { PaginationInfoProps } from "../types/types";
 
-export const Pagination = ({
+import { PaginationInfoProps } from "../../../types/types";
+
+import classes from "./Pagination.module.css";
+
+const Pagination = ({
   paginationInfo,
   onPageChanged,
   currentPage,
@@ -61,3 +63,4 @@ export const Pagination = ({
     </section>
   );
 };
+export default Pagination;

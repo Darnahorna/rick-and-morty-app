@@ -15,10 +15,10 @@ export const Filters = () => {
           <option value="vname2">Z-A</option>
         </select>
       </div>
-      <div className="search">
+      {/* <div className="search">
         <input type="search" placeholder="Search..." />
         <span className="material-symbols-outlined"> search </span>
-      </div>
+      </div> */}
     </section>
   );
 };

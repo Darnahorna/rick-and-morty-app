@@ -1,0 +1,10 @@
+.not_found_block {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  height: 60vh;
+}
+.not_found_block h2 {
+  text-align: 2rem;
+  align-self: center;
+}
