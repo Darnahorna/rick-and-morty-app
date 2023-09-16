@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Filters } from "../../components/Filters/Filters.tsx";
-import { EpisodeCard } from "../../components/Card/EpisodeCard.tsx";
-import { CharacterCard } from "../../components/Card/CharacterCard.tsx";
-import { LocationCard } from "../../components/Card/LocationCard.tsx";
-import Pagination from "../../components/common/Pagination/Pagination.tsx";
-import Preloader from "../../components/common/Preloader/Preloader.tsx";
+import { Filters } from "../Filters/Filters.tsx";
+import { EpisodeCard } from "../Card/EpisodeCard.tsx";
+import { CharacterCard } from "../Card/CharacterCard.tsx";
+import { LocationCard } from "../Card/LocationCard.tsx";
+import Pagination from "../common/Pagination/Pagination.tsx";
+import Preloader from "../common/Preloader/Preloader.tsx";
 
 import {
   Character,
@@ -13,7 +13,7 @@ import {
   Location,
 } from "../../types/types.ts";
 
-export const TabsCardContainer = ({ contentType }: ContentType) => {
+export const CardContainer = ({ contentType }: ContentType) => {
   const [data, setData] = useState<Character[] | Location[] | Episode[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,7 +61,7 @@ export const TabsCardContainer = ({ contentType }: ContentType) => {
     <>
       <h2>
         {contentType === "character"
-          ? "Character"
+          ? "Characters"
           : contentType === "location"
           ? "Locations"
           : "Episodes"}

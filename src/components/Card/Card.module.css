@@ -8,7 +8,10 @@
   overflow: hidden;
   background-color: white;
   width: 30vw;
-  height: 25vh;
+  height: 30vh;
+}
+.section {
+  margin-top: 1rem;
 }
 
 .grid_item:hover {
@@ -28,7 +31,7 @@
   object-fit: cover;
 }
 
-.card_img img:hover {
+.card_img :hover {
   transform: scale(1.1);
   transition: all 0.2s ease-in-out;
 }
@@ -78,8 +81,8 @@
   background-color: gray;
 }
 .smaller_grid {
-  width: 30vw;
-  height: 20vh;
+  width: 25vw;
+  height: 25vh;
 }
 
 /* Medium devices (tablets, 768px and up) */

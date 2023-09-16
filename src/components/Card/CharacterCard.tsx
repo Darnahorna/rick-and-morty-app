@@ -4,10 +4,10 @@ import classes from "./Card.module.css";
 
 export const CharacterCard = ({ item }: CharacterProps) => {
   return (
-    <Link to={""}>
+    <Link to={`/characters/${item.id}`}>
       <article className={classes.grid_item}>
         <div className={classes.card_img}>
-          <img src={item.image} />
+          <img src={item.image} title={item.name} alt={item.name} />
         </div>
         <div className={classes.item_description}>
           <div className={classes.section}>

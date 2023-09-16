@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { TabsCardContainer } from "../src/pages/TabPage/TabsCardContainer.tsx";
+import { CardContainer } from "./components/CardContainer/CardContainer.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
 import { Footer } from "./components/Footer/Footer.tsx";
 
@@ -27,23 +27,20 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <TabsCardContainer
-                      contentType="character"
-                      key="character"
-                    />
+                    <CardContainer contentType="character" key="character" />
                   }
                 ></Route>
                 <Route path="/characters/:id" element={<CharacterPage />} />
                 <Route
                   path="/locations"
                   element={
-                    <TabsCardContainer contentType="location" key="location" />
+                    <CardContainer contentType="location" key="location" />
                   }
                 ></Route>
                 <Route
                   path="/episodes"
                   element={
-                    <TabsCardContainer contentType="episode" key="episode" />
+                    <CardContainer contentType="episode" key="episode" />
                   }
                 ></Route>
                 <Route path="*" element={<ErrorPage />} />
