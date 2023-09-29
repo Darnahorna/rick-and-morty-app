@@ -7,7 +7,7 @@ export const NavList = ({ closeMenu }: NavLinkProps) => {
   return (
     <ul className={classes.menu_list}>
       <li>
-        <NavLink to="/" onClick={closeMenu}>
+        <NavLink to="/characters" onClick={closeMenu}>
           Characters
         </NavLink>
       </li>

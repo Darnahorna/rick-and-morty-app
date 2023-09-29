@@ -2,10 +2,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { Character, Episode } from "../../types/types";
 import Preloader from "../../components/common/Preloader/Preloader";
-import convertDate from "../../utils/convertDate";
 
 import classes from "./CharacterPage.module.css";
 import { useEffect, useState } from "react";
+import { InfoBody } from "../../components/InfoBody/InfoBody";
 
 export const CharacterPage = () => {
   const { id } = useParams();
@@ -46,58 +46,21 @@ export const CharacterPage = () => {
         Back
       </button>
       <article className={classes.character_item}>
-        <div className={classes.image}>
-          <img
-            src={character?.image}
-            alt={character?.name}
-            title={character?.name}
-          />
-        </div>
-        <div className={classes.body}>
-          <div className={classes.section}>
-            <h2>{character?.name}</h2>
+        <div>
+          <div className={classes.image}>
+            <img
+              src={character?.image}
+              alt={character?.name}
+              title={character?.name}
+            />
           </div>
-          <div className={classes.section}>
-            <span className={classes.status}>
-              <span
-                className={`${classes.status_icon} ${
-                  character?.status === "Alive"
-                    ? classes.alive
-                    : character?.status === "Dead"
-                    ? classes.dead
-                    : classes.unknown
-                }`}
-              ></span>
-              {character?.status} - {character?.species}
-            </span>
-          </div>
-          <div className={classes.section}>
-            <span className={classes.text_gray}>Gender:</span>
-            <span> {character?.gender}</span>
-          </div>
-          {character?.type && (
-            <div className={classes.section}>
-              <span className={classes.text_gray}>Type:</span>
-              <span> {character?.type}</span>
-            </div>
-          )}
-          <div className={classes.section}>
-            <span className={classes.text_gray}>Created:</span>
-            <span> {convertDate(character?.created as string)}</span>
-          </div>
-          <div className={classes.section}>
-            <span className={classes.text_gray}>Last known location: </span>
-            <a href={character?.location.url}>{character?.location.name}</a>
-          </div>
-          <div className={classes.section}>
-            <span className={classes.text_gray}>First seen in: </span>
-            <a href={character?.origin.url}>{character?.origin.name}</a>
-          </div>
+          <InfoBody character={character as Character} />
         </div>
         <div className={classes.actions}>
           <div className={classes.star}></div>
         </div>
       </article>
+
       {character?.episode && (
         <div className={classes.episodes}>
           <h3>Episodes</h3>

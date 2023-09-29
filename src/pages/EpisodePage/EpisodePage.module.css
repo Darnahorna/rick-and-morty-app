@@ -51,10 +51,10 @@
 .star {
   width: 3rem;
   height: 3rem;
-  transition: background 0.3s ease; /* Smooth transition effect */
+  transition: background 0.3s ease;
   background-image: url("../../assets/star.png");
-  background-size: cover; /* Adjust as needed */
-  background-repeat: no-repeat; /* Adjust as needed */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .star:hover {
   background-image: url("../../assets/star_selected.png");
@@ -101,12 +101,20 @@
   margin: 0.2rem;
   border-radius: 0.5rem;
   background-color: var(--secondary-color);
+  opacity: 0.8;
 }
 .episode_url {
   color: var(--text-color);
 }
 
 @media (max-width: 992px) {
+  .character_item {
+    display: block;
+  }
+  .body {
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media (max-width: 576px) {
 }

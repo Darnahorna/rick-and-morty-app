@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Filters } from "../Filters/Filters.tsx";
+import { Filters } from "../Filters/CharacterFilters.tsx";
 import { EpisodeCard } from "../Card/EpisodeCard.tsx";
 import { CharacterCard } from "../Card/CharacterCard.tsx";
 import { LocationCard } from "../Card/LocationCard.tsx";
@@ -34,9 +34,18 @@ export const CardContainer = ({ contentType }: ContentType) => {
         return response.json();
       })
       .then((data) => {
+        // if (isResolved) {
         setData(data.results);
+        //myPromise.then();
         setLoading(false);
         setPaginationInfo(data.info);
+        // } else {
+        //   myPromise.then(() => {
+        //     setData(data.results);
+        //     setLoading(false);
+        //     setPaginationInfo(data.info);
+        //   });
+        // }
       })
       .catch((error) => {
         setError(error.message);

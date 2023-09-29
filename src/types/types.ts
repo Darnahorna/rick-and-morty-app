@@ -65,3 +65,5 @@ export type PaginationInfoProps = {
 export type ContentType = {
   contentType: string;
 };
+
+export type Images = string[];

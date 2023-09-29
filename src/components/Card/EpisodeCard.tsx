@@ -16,7 +16,7 @@ export const EpisodeCard = ({ item }: EpisodeProps) => {
         </div>
         <div className={classes.section}>
           <span className={classes.text_gray}>Episode code:</span>
-          <a>{item.episode}</a>
+          {item.episode}
         </div>
         <div className={classes.section}>
           <span className={classes.text_gray}>Created:</span>
