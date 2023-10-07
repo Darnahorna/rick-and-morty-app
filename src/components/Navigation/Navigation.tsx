@@ -2,7 +2,7 @@ import classes from "./Navigation.module.css";
 import { HamburgerMenu } from "./HamburgerMenu/HamburgerMenu.tsx";
 import { useState } from "react";
 import { NavList } from "./NavList/NavList.tsx";
-import promo from "../../assets/cover.png";
+import promo from "../../assets/logo.png";
 
 export const Navigation = () => {
   // State to track whether the menu is open or closed

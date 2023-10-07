@@ -7,6 +7,11 @@ export const NavList = ({ closeMenu }: NavLinkProps) => {
   return (
     <ul className={classes.menu_list}>
       <li>
+        <NavLink to="/" onClick={closeMenu}>
+          Home
+        </NavLink>
+      </li>
+      <li>
         <NavLink to="/characters" onClick={closeMenu}>
           Characters
         </NavLink>
@@ -19,6 +24,11 @@ export const NavList = ({ closeMenu }: NavLinkProps) => {
       <li>
         <NavLink to="/episodes" onClick={closeMenu}>
           Episodes
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/favorites" onClick={closeMenu}>
+          Favorites
         </NavLink>
       </li>
     </ul>

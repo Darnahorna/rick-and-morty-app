@@ -1,22 +1,23 @@
-import { Suspense, createContext } from "react";
+import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CardContainer } from "./components/CardContainer/CardContainer.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
 import { Footer } from "./components/Footer/Footer.tsx";
-
 import Preloader from "./components/common/Preloader/Preloader.tsx";
-import promo from "./assets/cover.png";
+import promo from "./assets/logo.png";
 import ErrorPage from "./pages/ErrorPage/ErrorPage.tsx";
 import { CharacterPage } from "./pages/CharactersPage/CharacterPage.tsx";
-
-import "./App.css";
 import HomePage from "./pages/HomePage.tsx/HomePage.tsx";
 
+import "./App.css";
+import { CharacterContainer } from "./components/CardContainer/CharacterContainer.tsx";
+import GlobalStateProvider from "./hooks/globalState.tsx";
+import Favorites from "./pages/FavoritesPage/Favorites.tsx";
+
 function App() {
-  const GlobalStateContext = createContext<{ foo: string } | null>(null);
   return (
     <>
-      <GlobalStateContext.Provider value={{ foo: "bar" }}>
+      <GlobalStateProvider>
         <header>
           <img src={promo} className="img_promo" />
         </header>
@@ -30,9 +31,7 @@ function App() {
                   <Route path="/" element={<HomePage />}></Route>
                   <Route
                     path="/characters"
-                    element={
-                      <CardContainer contentType="character" key="character" />
-                    }
+                    element={<CharacterContainer />}
                   ></Route>
                   <Route path="/characters/:id" element={<CharacterPage />} />
                   <Route
@@ -47,6 +46,7 @@ function App() {
                       <CardContainer contentType="episode" key="episode" />
                     }
                   ></Route>
+                  <Route path="/favorites" element={<Favorites />}></Route>
                   <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </main>
@@ -54,7 +54,7 @@ function App() {
           </Suspense>
           <Footer />
         </div>
-      </GlobalStateContext.Provider>
+      </GlobalStateProvider>
     </>
   );
 }

@@ -1,4 +1,5 @@
 export interface Character {
+  [x: string]: unknown;
   id: number;
   name: string;
   status: "Alive" | "Dead" | "unknown";
@@ -19,6 +20,18 @@ export interface Character {
   created: string;
 }
 
+export interface CharacterResponse {
+  results: Character[];
+  info: CharacterInfo;
+}
+export interface EpisodeResponse {
+  results: Episode[];
+  info: CharacterInfo;
+}
+export interface LocationResponse {
+  results: Location[];
+  info: CharacterInfo;
+}
 export type CharacterProps = {
   item: Character;
 };
@@ -52,16 +65,28 @@ export type EpisodeProps = {
 };
 
 export type PaginationInfoProps = {
-  paginationInfo: {
-    count: number;
-    pages: number;
-    next: null | "string";
-    prev: null | "string";
-  };
+  paginationInfo: CharacterInfo;
   onPageChanged: (pageNumber: number) => void;
   currentPage: number;
 };
 
+export type CharacterInfo = {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+};
+
+export type FilterInfoProps = {
+  onFilterChanged: (filterData: FilterProps) => void;
+  filterData: FilterProps;
+};
+
+export type FilterProps = {
+  status: string;
+  gender: string;
+  search: string;
+};
 export type ContentType = {
   contentType: string;
 };

@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
 import { Character, Episode } from "../../types/types";
 import Preloader from "../../components/common/Preloader/Preloader";
 import convertDate from "../../utils/convertDate";
 
 import classes from "./CharacterPage.module.css";
 import { useEffect, useState } from "react";
+import useRouteGlobalData from "../../hooks/useGlobalStateContext";
 
 export const EpisodePage = () => {
   const { id } = useParams();
@@ -13,9 +13,10 @@ export const EpisodePage = () => {
   const {
     data: character,
     error,
-    isError,
     isLoading,
-  } = useFetch<Character>(`https://rickandmortyapi.com/api/character/${id}`);
+  } = useRouteGlobalData<Character>(
+    `https://rickandmortyapi.com/api/character/${id}`
+  );
 
   const navigate = useNavigate();
   const [episodeNames, setEpisodeNames] = useState<Episode[]>([]);
@@ -40,7 +41,7 @@ export const EpisodePage = () => {
   return (
     <div className={classes.character_page}>
       <h1>Character</h1>
-      {isError && <div>{error?.message}</div>}
+      {error && <div>{error?.message}</div>}
       {isLoading && <Preloader />}
       <button className="character-back-button" onClick={() => navigate(-1)}>
         Back

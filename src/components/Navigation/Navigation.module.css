@@ -1,8 +1,9 @@
 nav {
   flex-direction: c;
-  justify-content: space-between;
   align-self: flex-start;
   display: flex;
+  position: sticky;
+  top: 0;
 }
 .img_wrapper {
   display: flex;

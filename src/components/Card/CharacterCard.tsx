@@ -11,9 +11,8 @@ export const CharacterCard = ({ item }: CharacterProps) => {
         </div>
         <div className={classes.item_description}>
           <div className={classes.section}>
-            <a href={item.url}>
-              <h3>{item.name}</h3>
-            </a>
+            <h3>{item.name}</h3>
+
             <span className={classes.status}>
               <span
                 className={`${classes.status_icon} ${
@@ -29,11 +28,11 @@ export const CharacterCard = ({ item }: CharacterProps) => {
           </div>
           <div className={classes.section}>
             <span className={classes.text_gray}>Last known location:</span>
-            <a href={item.location.url}>{item.location.name}</a>
+            {item.location.name}
           </div>
           <div className={classes.section}>
             <span className={classes.text_gray}>First seen in:</span>
-            <a href={item.origin.url}>{item.origin.name}</a>
+            {item.origin.name}
           </div>
         </div>
       </article>

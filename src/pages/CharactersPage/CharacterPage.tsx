@@ -1,24 +1,30 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+
 import { Character, Episode } from "../../types/types";
 import Preloader from "../../components/common/Preloader/Preloader";
 
+import convertDate from "../../utils/convertDate";
+
 import classes from "./CharacterPage.module.css";
-import { useEffect, useState } from "react";
-import { InfoBody } from "../../components/InfoBody/InfoBody";
+import { useFetch } from "../../hooks/useFetch";
 
 export const CharacterPage = () => {
+  const [episodeNames, setEpisodeNames] = useState<Episode[]>([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const { id } = useParams();
 
   const {
     data: character,
     error,
-    isError,
     isLoading,
-  } = useFetch<Character>(`https://rickandmortyapi.com/api/character/${id}`);
+  } = useFetch<Character>({
+    url: `https://rickandmortyapi.com/api/character/${id}`,
+    bypass: false,
+  });
 
   const navigate = useNavigate();
-  const [episodeNames, setEpisodeNames] = useState<Episode[]>([]);
 
   useEffect(() => {
     if (character && character.episode) {
@@ -37,16 +43,24 @@ export const CharacterPage = () => {
     }
   }, [character]);
 
+  const handleAddToFavorites = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div className={classes.character_page}>
       <h1>Character</h1>
-      {isError && <div>{error?.message}</div>}
+      {error && <div>{error?.message}</div>}
       {isLoading && <Preloader />}
-      <button className="character-back-button" onClick={() => navigate(-1)}>
-        Back
-      </button>
+
       <article className={classes.character_item}>
-        <div>
+        <button
+          className={classes.character_back_btn}
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
+        <div className={classes.character_info}>
           <div className={classes.image}>
             <img
               src={character?.image}
@@ -54,10 +68,59 @@ export const CharacterPage = () => {
               title={character?.name}
             />
           </div>
-          <InfoBody character={character as Character} />
+          <div className={classes.body}>
+            <div className={classes.section}>
+              <h2>{character?.name}</h2>
+            </div>
+            <div className={classes.section}>
+              <span className={classes.status}>
+                <span
+                  className={`${classes.status_icon} ${
+                    character?.status === "Alive"
+                      ? classes.alive
+                      : character?.status === "Dead"
+                      ? classes.dead
+                      : classes.unknown
+                  }`}
+                ></span>
+                {character?.status} - {character?.species}
+              </span>
+            </div>
+            <div className={classes.section}>
+              <span className={classes.text_gray}>Gender:</span>
+              <span> {character?.gender}</span>
+            </div>
+            {character?.type && (
+              <div className={classes.section}>
+                <span className={classes.text_gray}>Type:</span>
+                <span> {character?.type}</span>
+              </div>
+            )}
+            <div className={classes.section}>
+              <span className={classes.text_gray}>Created:</span>
+              <span> {convertDate(character?.created || "")}</span>
+            </div>
+            <div className={classes.section}>
+              <span className={classes.text_gray}>Last known location: </span>
+              <a href={character?.location.url}>{character?.location.name}</a>
+            </div>
+            <div className={classes.section}>
+              <span className={classes.text_gray}>First seen in: </span>
+              <a href={character?.origin.url}>{character?.origin.name}</a>
+            </div>
+          </div>
         </div>
         <div className={classes.actions}>
-          <div className={classes.star}></div>
+          <button
+            className={classes.add_favorite_btn}
+            onClick={handleAddToFavorites}
+          >
+            <div
+              className={`${classes.star} ${
+                isFavorite ? `${classes.favorite}` : ""
+              }`}
+            ></div>
+          </button>
         </div>
       </article>
 

@@ -3,16 +3,15 @@
   border-radius: 0.5rem;
   margin: 1rem;
   padding: 1rem;
-  display: flex;
-  flex-direction: row;
 }
 
 .character_item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 1rem;
+  margin: 1rem;
 }
 
 .text_gray {
@@ -25,7 +24,8 @@
 .image {
   overflow: hidden;
   border-radius: 0.5rem;
-  margin: 1rem;
+  align-self: center;
+  width: 45%;
 }
 .image img {
   border-radius: 0.5rem;
@@ -39,20 +39,32 @@
   justify-content: space-between;
   flex-direction: column;
   align-self: flex-start;
-  margin: 1rem;
+  width: 45%;
+}
+.character_back_btn {
+  align-self: flex-start;
+  padding: 1vh 1.5vw;
+  border-radius: 0.5em;
+  background-color: var(--primary-color);
+  font-family: var(--font);
+}
+.character_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .actions {
   align-self: flex-start;
   display: flex;
   justify-content: flex-end;
-  margin: 1rem;
-  width: 25%;
 }
 
 .star {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   transition: background 0.3s ease;
   background-image: url("../../assets/star.png");
   background-size: cover;
@@ -60,6 +72,14 @@
 }
 .star:hover {
   background-image: url("../../assets/star_selected.png");
+}
+.favorite {
+  background-image: url("../../assets/star_selected.png");
+}
+.add_favorite_btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 .status {
   display: flex;
@@ -110,9 +130,6 @@
 }
 
 @media (max-width: 992px) {
-  .character_item {
-    display: block;
-  }
   .body {
     justify-content: center;
     align-items: center;

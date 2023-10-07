@@ -20,7 +20,7 @@
 }
 
 .menu-icon.open .bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-0.6em, 0.6em);
+  transform: rotate(-45deg) translate(-0.65em, 0.6em);
   background-color: var(--highlight-color);
 }
 

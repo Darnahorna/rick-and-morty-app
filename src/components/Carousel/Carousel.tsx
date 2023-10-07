@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import first_picture from "../../assets/1.webp";
 import second_picture from "../../assets/2.webp";
@@ -20,6 +20,13 @@ const Carousel = () => {
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <div className={classes.carousel}>
