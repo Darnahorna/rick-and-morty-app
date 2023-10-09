@@ -26,11 +26,11 @@ export const NavList = ({ closeMenu }: NavLinkProps) => {
           Episodes
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to="/favorites" onClick={closeMenu}>
           Favorites
         </NavLink>
-      </li>
+      </li> */}
     </ul>
   );
 };

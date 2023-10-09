@@ -34,22 +34,24 @@
 }
 
 .menu-items {
+  height: 100vh;
   position: absolute;
-  top: 4rem;
+  top: 3.5rem;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 1);
   border: 1px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  width: 22rem;
-  align-items: center;
+  width: 23rem;
+  align-items: flex-end;
 }
 
 .menu-items ul {
   list-style: none;
   padding: 0;
+  text-align: end;
 }
 
 .menu-items li {

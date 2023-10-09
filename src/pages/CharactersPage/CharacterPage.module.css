@@ -134,6 +134,29 @@
     justify-content: center;
     align-items: center;
   }
+  .character_back_btn {
+    display: none;
+  }
 }
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .character_info {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+  }
+  .character_item {
+    margin: 0;
+  }
+  .body {
+    width: 100%;
+  }
+  .star {
+    display: none;
+  }
+}
+/* Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
 }

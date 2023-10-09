@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { PaginationInfoProps } from "../../../types/types";
 
@@ -21,7 +21,15 @@ const Pagination = ({
   const leftPortionPageNumber = (portionNumber - 1) * 7 + 1;
   const rightPortionNumber = portionNumber * 7;
 
-  useEffect(() => setPortionNumber(Math.ceil(currentPage / 7)), [currentPage]);
+  // useEffect(() => setPortionNumber(Math.ceil(currentPage / 7)), [currentPage]);
+
+  const handlePageChange = useCallback(
+    (pageNumber: number) => {
+      onPageChanged(pageNumber);
+      setPortionNumber(Math.ceil(pageNumber / 7));
+    },
+    [onPageChanged]
+  );
 
   return (
     <section className={classes.pagination}>
@@ -40,7 +48,7 @@ const Pagination = ({
         .map((p, index) => {
           return (
             <button
-              onClick={() => onPageChanged(p)}
+              onClick={() => handlePageChange(p)}
               className={
                 currentPage === p
                   ? classes.active
