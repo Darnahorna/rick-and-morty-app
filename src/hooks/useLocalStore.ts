@@ -1,45 +1,75 @@
-import { useReducer } from "react";
-import { Character } from "../types/types";
-import { favoritesService } from "../services/favorites";
+import { useCallback, useSyncExternalStore, useEffect } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-export type Action =
-  | { type: "ADD"; item: Character }
-  | { type: "DELETE"; id: number };
+function dispatchStorageEvent(
+  key: string,
+  newValue: string | null | undefined
+) {
+  window.dispatchEvent(new StorageEvent("storage", { key, newValue }));
+}
 
-const reducer = (state: Character[], action: Action) => {
-  //returns state related to action
-  switch (action.type) {
-    case "ADD": {
-      favoritesService.addItem(action.item);
-      return favoritesService.getAllItems();
-    }
-    case "DELETE": {
-      favoritesService.deleteItem(action.id);
-      return favoritesService.getAllItems();
-    }
-    default:
-      return state;
-  }
+const getLocalStorageItem = (key: string) => {
+  return window.localStorage.getItem(key);
 };
 
-export default function useLocalStorage() {
-  const [state, dispatch] = useReducer(reducer, favoritesService.getAllItems());
+const setLocalStorageItem = (key: string, value: unknown) => {
+  const stringifiedValue = JSON.stringify(value);
+  window.localStorage.setItem(key, stringifiedValue);
+  dispatchStorageEvent(key, stringifiedValue);
+};
 
-  const add = (item: Character) => {
-    dispatch({ type: "ADD", item });
-  };
+const removeLocalStorageItem = (key: string) => {
+  window.localStorage.removeItem(key);
+  dispatchStorageEvent(key, null);
+};
 
-  const remove = (id: number) => {
-    dispatch({ type: "DELETE", id });
-  };
+const useLocalStorageSubscribe = (callback: () => void) => {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+};
 
-  const getItemById = (id: number) => {
-    return state.find((item) => item.id === id);
-  };
+type SetValue<T> = Dispatch<SetStateAction<T>>; // same as type from useState setter
 
-  const getAllItems = () => {
-    return state;
-  };
+export const useLocalStorage = <T>(
+  key: string,
+  initialValue: T
+): [T, SetValue<T>] => {
+  const getSnapshot = () => getLocalStorageItem(key);
 
-  return { add, remove, getItemById, getAllItems };
-}
+  const store = useSyncExternalStore(
+    useLocalStorageSubscribe, // any changes in storage
+    getSnapshot // what to do
+  );
+
+  const setState: SetValue<T> = useCallback(
+    (v) => {
+      try {
+        // Typecast because of Typescript issue https://github.com/microsoft/TypeScript/issues/37663
+        const nextState =
+          typeof v === "function"
+            ? (v as (prevState: T) => T)(JSON.parse(store!))
+            : v;
+
+        if (nextState === undefined || nextState === null) {
+          removeLocalStorageItem(key);
+        } else {
+          setLocalStorageItem(key, nextState);
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    [key, store]
+  );
+
+  useEffect(() => {
+    if (
+      getLocalStorageItem(key) === null &&
+      typeof initialValue !== "undefined"
+    ) {
+      setLocalStorageItem(key, initialValue);
+    }
+  }, [key, initialValue]);
+
+  return [store ? (JSON.parse(store) as T) : initialValue, setState];
+};

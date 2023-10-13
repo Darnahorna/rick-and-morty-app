@@ -8,14 +8,11 @@ import convertDate from "../../utils/convertDate";
 
 import classes from "./CharacterPage.module.css";
 import { useFetch } from "../../hooks/useFetch";
-import { favoritesService } from "../../services/favorites";
-import useLocalStorage from "../../hooks/useLocalStore";
+import { useFavoritesStore } from "../../services/favorites";
 
 export const CharacterPage = () => {
   const [episodeNames, setEpisodeNames] = useState<Episode[]>([]);
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const { add, remove, getItemById, getAllItems } = useLocalStorage();
+  const { add, remove, getItemById } = useFavoritesStore();
 
   const { id } = useParams();
 
@@ -27,6 +24,8 @@ export const CharacterPage = () => {
     url: `https://rickandmortyapi.com/api/character/${id}`,
     bypass: false,
   });
+
+  const isFavorite = !!getItemById(character?.id as number);
 
   const navigate = useNavigate();
 
@@ -48,8 +47,6 @@ export const CharacterPage = () => {
   }, [character]);
 
   const toggleFavorites = (character: Character) => {
-    setIsFavorite((prevState) => !prevState);
-
     isFavorite ? remove(character.id) : add(character);
   };
   return (

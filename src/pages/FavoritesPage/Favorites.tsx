@@ -1,34 +1,25 @@
 import classes from "./Favorites.module.css";
 
-
-import { useState, useEffect } from "react";
-import { Character } from "../../types/types";
-import { favoritesService } from "../../services/favorites";
+import { useFavoritesStore } from "../../services/favorites";
+import { CharacterCard } from "../../components/Card/CharacterCard";
 
 export const FavoritesPage = () => {
-  const [favorites, setFavorites] = useState<Character[]>([]);
+  const { getAllItems } = useFavoritesStore();
 
-  useEffect(() => {
-    const favorites = favoritesService.getAllItems();
-    setFavorites(favorites);
-  }, []);
+  const favorites = getAllItems();
 
   return (
-    <div className={classes.favorites}>
+    <>
       <h1>Favorites</h1>
-      {favorites.length === 0 && <div>No favorites yet.</div>}
-      {favorites.map((character) => (
-        <div key={character?.id}>
-          <h2>{character?.name}</h2>
-          {/* <button onClick={() => handleAddToFavorites(character.id)}>
-            Remove from Favorites
-          </button> */}
-        </div>
-      ))}
-    </div>
+      <div className={classes.favorites}>
+        {favorites.length === 0 && (
+          <div className={classes.text_gray}>🛸 No favorites yet 🛸</div>
+        )}
+        {favorites.map((character) => (
+          <CharacterCard item={character} />
+        ))}
+      </div>
+    </>
   );
 };
 export default FavoritesPage;
-
-
-
