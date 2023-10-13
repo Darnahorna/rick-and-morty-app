@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CardContainer } from "./components/CardContainer/CardContainer.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";
@@ -12,9 +12,10 @@ import HomePage from "./pages/HomePage.tsx/HomePage.tsx";
 import "./App.css";
 import { CharacterContainer } from "./components/CardContainer/CharacterContainer.tsx";
 import GlobalStateProvider from "./hooks/globalState.tsx";
-import Favorites from "./pages/FavoritesPage/Favorites.tsx";
+import FavoritesPage from "./pages/FavoritesPage/Favorites.tsx";
 
 function App() {
+
   return (
     <>
       <GlobalStateProvider>
@@ -46,7 +47,7 @@ function App() {
                       <CardContainer contentType="episode" key="episode" />
                     }
                   ></Route>
-                  <Route path="/favorites" element={<Favorites />}></Route>
+                  <Route path="/favorites" element={<FavoritesPage  />}></Route>
                   <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </main>

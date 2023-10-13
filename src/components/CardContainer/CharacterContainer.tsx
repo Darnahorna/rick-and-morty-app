@@ -40,14 +40,14 @@ export const CharacterContainer = () => {
     setCurrentPage(1);
   };
 
-  const { data, isLoading, isError } = useFetch<CharacterResponse>({
+  const { data, isLoading, error } = useFetch<CharacterResponse>({
     url: `${url}`,
     bypass: false,
   });
 
   const filteredCharacters = useMemo(
     () =>
-      data?.results.filter((character) => {
+      data?.results?.filter((character) => {
         return (
           character.name.toLowerCase().includes(filterData?.search || "") &&
           character.status.toLowerCase().includes(filterData?.status || "") &&
@@ -60,19 +60,18 @@ export const CharacterContainer = () => {
   if (isLoading) {
     return <Preloader />;
   }
-  if (isError) {
+  if (error) {
     return <ErrorPage />;
   }
 
   return (
     <>
-      {" "}
       <h2>Characters</h2>
       <Filters onFilterChanged={onFilterChanged} filterData={filterData} />
       <section className="parent-grid">
-        {filteredCharacters?.map((item: Character) => {
+        {filteredCharacters ? filteredCharacters.map((item: Character) => {
           return <CharacterCard item={item as Character} key={item.id} />;
-        })}
+        }): <div>No results found.</div>}
       </section>
       {data?.info && (
         <Pagination

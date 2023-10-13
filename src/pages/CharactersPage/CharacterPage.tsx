@@ -43,8 +43,18 @@ export const CharacterPage = () => {
     }
   }, [character]);
 
-  const handleAddToFavorites = () => {
+  const handleAddToFavorites = (character:Character | null) => {
     setIsFavorite(!isFavorite);
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  if (isFavorite) {
+    const index = favorites.findIndex((f: Character) => f.id === character?.id);
+    if (index !== -1) {
+      favorites.splice(index, 1);
+    }
+  } else {
+    favorites.push(character);
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
   return (
@@ -112,8 +122,7 @@ export const CharacterPage = () => {
         </div>
         <div className={classes.actions}>
           <button
-            className={classes.add_favorite_btn}
-            onClick={handleAddToFavorites}
+            className={classes.add_favorite_btn} onClick={() => handleAddToFavorites(character)}
           >
             <div
               className={`${classes.star} ${
