@@ -13,7 +13,6 @@ export const useFetch = <T>({
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    console.log(url);
     if (!url || bypass) return;
     (async function () {
       const controller = new AbortController();
@@ -30,7 +29,6 @@ export const useFetch = <T>({
       } finally {
         setIsLoading(false);
       }
-
       return () => controller?.abort();
     })();
   }, [url]);

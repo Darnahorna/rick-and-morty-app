@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CardContainer } from "./components/CardContainer/CardContainer.tsx";
 import { Navigation } from "./components/Navigation/Navigation.tsx";

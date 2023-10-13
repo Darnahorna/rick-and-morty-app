@@ -92,3 +92,5 @@ export type ContentType = {
 };
 
 export type Images = string[];
+
+export type Action = { type: "ADD"; item: Character } | { type: "DELETE"; id: number };

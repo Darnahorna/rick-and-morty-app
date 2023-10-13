@@ -8,10 +8,14 @@ import convertDate from "../../utils/convertDate";
 
 import classes from "./CharacterPage.module.css";
 import { useFetch } from "../../hooks/useFetch";
+import { favoritesService } from "../../services/favorites";
+import useLocalStorage from "../../hooks/useLocalStore";
 
 export const CharacterPage = () => {
   const [episodeNames, setEpisodeNames] = useState<Episode[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const { add, remove, getItemById, getAllItems } = useLocalStorage();
 
   const { id } = useParams();
 
@@ -43,20 +47,11 @@ export const CharacterPage = () => {
     }
   }, [character]);
 
-  const handleAddToFavorites = (character:Character | null) => {
-    setIsFavorite(!isFavorite);
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-  if (isFavorite) {
-    const index = favorites.findIndex((f: Character) => f.id === character?.id);
-    if (index !== -1) {
-      favorites.splice(index, 1);
-    }
-  } else {
-    favorites.push(character);
-  }
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  };
+  const toggleFavorites = (character: Character) => {
+    setIsFavorite((prevState) => !prevState);
 
+    isFavorite ? remove(character.id) : add(character);
+  };
   return (
     <div className={classes.character_page}>
       <h1>Character</h1>
@@ -122,7 +117,8 @@ export const CharacterPage = () => {
         </div>
         <div className={classes.actions}>
           <button
-            className={classes.add_favorite_btn} onClick={() => handleAddToFavorites(character)}
+            className={classes.add_favorite_btn}
+            onClick={() => toggleFavorites(character as Character)}
           >
             <div
               className={`${classes.star} ${

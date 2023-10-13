@@ -3,12 +3,13 @@ import classes from "./Favorites.module.css";
 
 import { useState, useEffect } from "react";
 import { Character } from "../../types/types";
+import { favoritesService } from "../../services/favorites";
 
 export const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<Character[]>([]);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const favorites = favoritesService.getAllItems();
     setFavorites(favorites);
   }, []);
 
