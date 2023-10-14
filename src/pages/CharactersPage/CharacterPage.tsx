@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Character, Episode } from "../../types/types";
 import Preloader from "../../components/common/Preloader/Preloader";
