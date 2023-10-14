@@ -13,9 +13,10 @@ import "./App.css";
 import { CharacterContainer } from "./components/CardContainer/CharacterContainer.tsx";
 import GlobalStateProvider from "./hooks/globalState.tsx";
 import FavoritesPage from "./pages/FavoritesPage/Favorites.tsx";
+import { EpisodePage } from "./pages/EpisodePage/EpisodePage.tsx";
+import { LocationPage } from "./pages/LocationPage/LocationPage.tsx";
 
 function App() {
-
   return (
     <>
       <GlobalStateProvider>
@@ -41,13 +42,15 @@ function App() {
                       <CardContainer contentType="location" key="location" />
                     }
                   ></Route>
+                  <Route path="/location/:id" element={<LocationPage />} />
                   <Route
                     path="/episodes"
                     element={
                       <CardContainer contentType="episode" key="episode" />
                     }
                   ></Route>
-                  <Route path="/favorites" element={<FavoritesPage  />}></Route>
+                  <Route path="/episodes/:id" element={<EpisodePage />} />
+                  <Route path="/favorites" element={<FavoritesPage />}></Route>
                   <Route path="*" element={<ErrorPage />} />
                 </Routes>
               </main>

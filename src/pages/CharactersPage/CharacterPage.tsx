@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Character, Episode } from "../../types/types";
 import Preloader from "../../components/common/Preloader/Preloader";
@@ -104,11 +104,12 @@ export const CharacterPage = () => {
             </div>
             <div className={classes.section}>
               <span className={classes.text_gray}>Last known location: </span>
-              <a href={character?.location.url}>{character?.location.name}</a>
+              {character?.location.name}
             </div>
             <div className={classes.section}>
               <span className={classes.text_gray}>First seen in: </span>
-              <a href={character?.origin.url}>{character?.origin.name}</a>
+
+              {character?.origin.name}
             </div>
           </div>
         </div>
@@ -131,11 +132,7 @@ export const CharacterPage = () => {
           <h3>Episodes</h3>
           <ul>
             {episodeNames.map((e, i) => (
-              <li key={i}>
-                <a href={e.url} className={classes.episode_url}>
-                  {e.name}
-                </a>
-              </li>
+              <li key={i}>{e.name}</li>
             ))}
           </ul>
         </div>

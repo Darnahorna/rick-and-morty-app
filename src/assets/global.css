@@ -144,8 +144,9 @@ nav ul li a:hover {
   body {
     background-size: cover;
   }
-  h2 {
-    text-align: center;
+  h2,
+  h1 {
+    text-align: center !important;
   }
   .nav-list {
     display: none;

@@ -1,11 +1,11 @@
-.episode_page {
+.location_page {
   background-color: aliceblue;
   border-radius: 0.5rem;
   margin: 1rem;
   padding: 1rem;
 }
 
-.episode_item {
+.location_item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -48,7 +48,7 @@
 }
 
 @media (max-width: 992px) {
-  .episode_item {
+  .location_item {
     text-align: center;
     justify-content: center;
   }

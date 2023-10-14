@@ -25,7 +25,7 @@
   overflow: hidden;
   border-radius: 0.5rem;
   align-self: center;
-  width: 45%;
+  width: 50%;
 }
 .image img {
   border-radius: 0.5rem;
@@ -39,7 +39,7 @@
   justify-content: space-between;
   flex-direction: column;
   align-self: flex-start;
-  width: 45%;
+  width: 47%;
 }
 .character_back_btn {
   align-self: flex-start;
@@ -147,14 +147,15 @@
   .image {
     width: 100%;
   }
-  .character_item {
-    margin: 0;
-  }
+
   .body {
     width: 100%;
   }
   .star {
     display: none;
+  }
+  .character_item {
+    justify-content: center;
   }
 }
 /* Small devices (landscape phones, 576px and up) */
